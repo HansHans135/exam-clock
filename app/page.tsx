@@ -59,14 +59,14 @@ const Home: FC = () => {
 
   const [currentTime, setCurrentTime] = useState<Date>(new Date());
   const [examSchedule, setExamSchedule] = useState<Exam[]>([
-    { id: 1, subject: "數學", startTime: "01:00", endTime: "02:00" },
-    { id: 2, subject: "國文", startTime: "03:00", endTime: "04:00" },
-    { id: 3, subject: "自然", startTime: "05:00", endTime: "06:00" },
+    { id: 1, subject: "化學", startTime: "11:10", endTime: "12:00" },
+    { id: 2, subject: "數位邏輯", startTime: "13:10", endTime: "14:00" },
+    { id: 3, subject: "自然", startTime: "15:10", endTime: "16:00" },
   ]);
   const [currentExam, setCurrentExam] = useState<Exam | null>(null);
   const [attendance, setAttendance] = useState<Attendance>({
-    present: 36,
-    total: 36,
+    present: 35,
+    total: 35,
   });
   const [showSchedule, setShowSchedule] = useState<boolean>(true);
   const [showCredits, setShowCredits] = useState<boolean>(false);
@@ -268,7 +268,7 @@ const Home: FC = () => {
           <a className="ml-2 px-1 rounded bg-orange-500 dark:bg-orange-600 text-white">
             <FontAwesomeIcon icon={faExpand} className={"sm:mr-1"} />
             <p className="max-sm:hidden">
-              目前正在全螢幕模式下，按 F11, Esc 或右方按鈕來離開
+              按 F11, 或右方按鈕來離開
             </p>
           </a>
         ) : (
@@ -412,7 +412,7 @@ const Home: FC = () => {
               icon={faPenToSquare}
               className={"sm:mr-1 sm:my-auto"}
             />
-            <p className={"max-sm:hidden"}>編輯考程與人數</p>
+            <p className={"max-sm:hidden"}>編輯</p>
           </button>
           <button
             className="flex flex-row transition-all my-auto ml-3 sm:ml-8 bg-green-500 text-white px-6 py-3 rounded text-2xl font-medium hover:bg-green-600 active:scale-95"
@@ -422,7 +422,7 @@ const Home: FC = () => {
               icon={faFileImport}
               className={"sm:mr-1 sm:my-auto"}
             />
-            <p className={"max-sm:hidden"}>導入考程與人數</p>
+            <p className={"max-sm:hidden"}>導入</p>
           </button>
         </div>
       </div>
