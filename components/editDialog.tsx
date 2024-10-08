@@ -174,7 +174,7 @@ const EditDialog: FC<EditDialogProps> = ({
     let numberGrid = [];
     var i: number;
 
-    for (i = -5; i < expectedAttendance; i++) {
+    for (i = 0; i < expectedAttendance+5; i++) {
       numberGrid.push(i + 1);
     }
 
