@@ -14,8 +14,8 @@ export async function GET(request: NextRequest) {
     }
   }
   return NextResponse.json([
-    { id: 1, subject: "數學", startTime: "01:00", endTime: "02:00" },
-    { id: 2, subject: "國文", startTime: "03:00", endTime: "04:00" },
-    { id: 3, subject: "自然", startTime: "05:00", endTime: "06:00" },
+    { id: 1, subject: "化學", startTime: "11:10", endTime: "12:00" },
+    { id: 2, subject: "數位邏輯", startTime: "13:10", endTime: "14:00" },
+    { id: 3, subject: "自然", startTime: "15:10", endTime: "16:00" },
   ]);
 }
