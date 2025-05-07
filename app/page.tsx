@@ -53,6 +53,7 @@ const Home: FC = () => {
 
   const [isEditDialogOpen, setIsEditDialogOpen] = useState<boolean>(false);
   const [isImportDialogOpen, setIsImportDialogOpen] = useState<boolean>(false);
+  const [showButtons, setShowButtons] = useState<boolean>(true);
   const [currentEditingData, setCurrentEditingData] = useState<
     EditingData | undefined
   >(undefined);
@@ -404,26 +405,43 @@ const Home: FC = () => {
           </div>
         </div>
         <div className="flex items-end mt-8">
-          <button
-            className="flex flex-row transition-all my-auto bg-blue-500 text-white px-6 py-3 rounded text-2xl font-medium hover:bg-blue-600 active:scale-95"
-            onClick={() => handleEditClick()}
-          >
-            <FontAwesomeIcon
+          {/* Button visibility toggle */}
+          <div className="flex flex-row">
+            <button
+              className="flex flex-row transition-all my-auto ml-3 bg-gray-400 text-white px-6 py-3 rounded text-2xl font-medium hover:bg-gray-500 active:scale-95"
+              onClick={() => setShowButtons(!showButtons)}
+            >
+              <FontAwesomeIcon
+              icon={showButtons ? faCompress : faExpand}
+              className={"sm:mr-1 sm:my-auto"}
+              />
+              <p className={"max-sm:hidden"}>{showButtons ? "隱藏" : "顯示"}</p>
+            </button>
+            
+            <button
+              className={`flex flex-row transition-all my-auto ml-3 sm:ml-4 ${showButtons ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-700'} px-6 py-3 rounded text-2xl font-medium hover:bg-blue-600 active:scale-95 ${!showButtons ? 'mr-0' : ''}`}
+              onClick={() => handleEditClick()}
+              style={{ display: showButtons ? 'flex' : 'none' }}
+            >
+              <FontAwesomeIcon
               icon={faPenToSquare}
               className={"sm:mr-1 sm:my-auto"}
-            />
-            <p className={"max-sm:hidden"}>編輯考程與人數</p>
-          </button>
-          <button
-            className="flex flex-row transition-all my-auto ml-3 sm:ml-8 bg-green-500 text-white px-6 py-3 rounded text-2xl font-medium hover:bg-green-600 active:scale-95"
-            onClick={() => handleImportClick()}
-          >
-            <FontAwesomeIcon
-              icon={faFileImport}
-              className={"sm:mr-1 sm:my-auto"}
-            />
-            <p className={"max-sm:hidden"}>導入考程與人數</p>
-          </button>
+              />
+              <p className={"max-sm:hidden"}>編輯考程與人數</p>
+            </button>
+            <button
+              className={`flex flex-row transition-all my-auto ml-3 sm:ml-8 ${showButtons ? 'bg-green-500 text-white' : 'bg-gray-300 text-gray-700'} px-6 py-3 rounded text-2xl font-medium hover:bg-green-600 active:scale-95 ${!showButtons ? 'mr-0' : ''}`}
+              onClick={() => handleImportClick()}
+              style={{ display: showButtons ? 'flex' : 'none' }}
+            >
+              <FontAwesomeIcon
+          icon={faFileImport}
+          className={"sm:mr-1 sm:my-auto"}
+              />
+              <p className={"max-sm:hidden"}>導入考程與人數</p>
+            </button>
+
+          </div>
         </div>
       </div>
     </>
