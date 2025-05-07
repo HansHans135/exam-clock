@@ -68,6 +68,7 @@ const Home: FC = () => {
   const [attendance, setAttendance] = useState<Attendance>({
     present: 36,
     total: 36,
+    seatCount:36,
   });
   const [showSchedule, setShowSchedule] = useState<boolean>(true);
   const [showCredits, setShowCredits] = useState<boolean>(false);
@@ -274,7 +275,7 @@ const Home: FC = () => {
           href="https://github.com/kevin0216"
           className="text-blue-400 hover:text-blue-500"
         >
-          &nbsp;@kevin0216
+          &nbsp;@kevin0216&nbsp;
         </a>
         &{" "}
         <a
@@ -426,14 +427,14 @@ const Home: FC = () => {
           {/* Button visibility toggle */}
           <div className="flex flex-row">
             <button
-              className="flex flex-row transition-all my-auto ml-3 bg-gray-400 text-white px-6 py-3 rounded text-2xl font-medium hover:bg-gray-500 active:scale-95"
+              className="flex flex-row transition-all my-auto ml-3 bg-gray-400 text-white px-6 py-3 rounded text-2xl font-medium hover:bg-gray-500 active:scale-95 mr-0"
               onClick={() => setShowButtons(!showButtons)}
             >
               <FontAwesomeIcon
               icon={showButtons ? faCompress : faExpand}
               className={"sm:mr-1 sm:my-auto"}
               />
-              <p className={"max-sm:hidden"}>{showButtons ? "隱藏" : "顯示"}</p>
+              <p className={"max-sm:hidden"}>{showButtons ? "隱藏按鈕" : "顯示"}</p>
             </button>
             
             <button
@@ -448,7 +449,7 @@ const Home: FC = () => {
               <p className={"max-sm:hidden"}>編輯考程與人數</p>
             </button>
             <button
-              className={`flex flex-row transition-all my-auto ml-3 sm:ml-8 ${showButtons ? 'bg-green-500 text-white' : 'bg-gray-300 text-gray-700'} px-6 py-3 rounded text-2xl font-medium hover:bg-green-600 active:scale-95 ${!showButtons ? 'mr-0' : ''}`}
+              className={`flex flex-row transition-all my-auto ml-3 sm:ml-4 ${showButtons ? 'bg-green-500 text-white' : 'bg-gray-300 text-gray-700'} px-6 py-3 rounded text-2xl font-medium hover:bg-green-600 active:scale-95 ${!showButtons ? 'mr-0' : ''}`}
               onClick={() => handleImportClick()}
               style={{ display: showButtons ? 'flex' : 'none' }}
             >

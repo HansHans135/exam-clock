@@ -43,7 +43,7 @@ const EditDialog: FC<EditDialogProps> = ({
         absentSeatNumbers: "",
       },
       showSchedule: true,
-      seatCount: 0, // 新增座號數量欄位
+      seatCount: 0,
     },
   );
 
@@ -370,10 +370,16 @@ const EditDialog: FC<EditDialogProps> = ({
                             <input
                               type="number"
                               value={data.attendanceData.expectedAttendance}
+                              min={0}
                               onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                                handleExpectedAttendanceChange(
-                                  parseInt(e.target.value, 10),
-                                );
+                                const newValue = parseInt(e.target.value, 10);
+                                handleExpectedAttendanceChange(newValue);
+                                const absentCount = data.attendanceData.absentSeatNumbers ? 
+                                  data.attendanceData.absentSeatNumbers.split(',').filter(x => x).length : 0;
+                                const newData = { ...data };
+                                newData.attendanceData.expectedAttendance = newValue;
+                                newData.attendanceData.actualAttendance = newValue - absentCount;
+                                setData(newData);
                               }}
                               className="block w-32 mt-1 px-3 py-2 rounded-md bg-gray-100 border border-gray-300 dark:border-slate-600 dark:bg-slate-600 dark:placeholder-white text-gray-900 dark:text-white placeholder-gray-500 focus:dark:border-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                               placeholder="應到人數"
@@ -405,6 +411,7 @@ const EditDialog: FC<EditDialogProps> = ({
                             </h4>
                             <input
                               type="number"
+                              min={0}
                               value={data.seatCount}
                               onChange={(e: ChangeEvent<HTMLInputElement>) => {
                                 handleSeatCountChange(

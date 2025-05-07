@@ -9,6 +9,7 @@ export interface Attendance {
   present: number;
   total: number;
   absentSeatNumbers?: string;
+  seatCount: number;
 }
 
 export interface EditingData {
