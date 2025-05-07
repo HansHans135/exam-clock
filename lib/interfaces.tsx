@@ -21,6 +21,7 @@ export interface EditingData {
     absentSeatNumbers: string;
   };
   showSchedule: boolean;
+  seatCount: number;
 }
 
 export interface ImportExamData {
@@ -29,3 +30,5 @@ export interface ImportExamData {
   startTime: string;
   endTime: string;
 }
+
+

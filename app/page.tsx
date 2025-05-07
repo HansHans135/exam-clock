@@ -71,6 +71,7 @@ const Home: FC = () => {
   });
   const [showSchedule, setShowSchedule] = useState<boolean>(true);
   const [showCredits, setShowCredits] = useState<boolean>(false);
+  const [seatCount, setSeatCount] = useState<number>(0);
 
   const formatEditingData = (): EditingData => {
     return {
@@ -83,6 +84,7 @@ const Home: FC = () => {
         absentSeatNumbers: attendance.absentSeatNumbers || "",
       },
       showSchedule: showSchedule,
+      seatCount: seatCount,
     };
   };
 
@@ -174,6 +176,7 @@ const Home: FC = () => {
     });
 
     setShowSchedule(data.showSchedule);
+    setSeatCount(data.seatCount);
     setIsEditDialogOpen(false);
   };
 

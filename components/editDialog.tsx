@@ -43,6 +43,7 @@ const EditDialog: FC<EditDialogProps> = ({
         absentSeatNumbers: "",
       },
       showSchedule: true,
+      seatCount: 0, // 新增座號數量欄位
     },
   );
 
@@ -58,6 +59,7 @@ const EditDialog: FC<EditDialogProps> = ({
           absentSeatNumbers: "",
         },
         showSchedule: true,
+        seatCount: 0,
       },
     );
   }, [initialData]);
@@ -89,6 +91,12 @@ const EditDialog: FC<EditDialogProps> = ({
   const handleExpectedAttendanceChange = (value: number) => {
     const newData = { ...data };
     newData.attendanceData.expectedAttendance = value;
+    setData(newData);
+  };
+
+  const handleSeatCountChange = (value: number) => {
+    const newData = { ...data };
+    newData.seatCount = value;
     setData(newData);
   };
 
@@ -170,11 +178,11 @@ const EditDialog: FC<EditDialogProps> = ({
     return false;
   }
 
-  function getNumberButton(expectedAttendance: number) {
+  function getNumberButton(seatCount: number) {
     let numberGrid = [];
     var i: number;
 
-    for (i = 0; i < expectedAttendance; i++) {
+    for (i = 0; i < seatCount; i++) {
       numberGrid.push(i + 1);
     }
 
@@ -391,6 +399,22 @@ const EditDialog: FC<EditDialogProps> = ({
                               placeholder="實到人數"
                             />
                           </div>
+                          <div className="ml-2">
+                            <h4 className="text-normal font-semibold text-gray-900 dark:text-white">
+                              座號數量
+                            </h4>
+                            <input
+                              type="number"
+                              value={data.seatCount}
+                              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                                handleSeatCountChange(
+                                  parseInt(e.target.value, 10),
+                                );
+                              }}
+                              className="block w-32 mt-1 px-3 py-2 rounded-md bg-gray-100 border border-gray-300 dark:border-slate-600 dark:bg-slate-600 dark:placeholder-white text-gray-900 dark:text-white placeholder-gray-500 focus:dark:border-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                              placeholder="座號數量"
+                            />
+                          </div>
                         </div>
                         <div>
                           <h3 className="mt-2 text-normal font-semibold text-gray-900 dark:text-white">
@@ -400,9 +424,7 @@ const EditDialog: FC<EditDialogProps> = ({
                             請點選未到學生座號來標記缺考
                           </h4>
                           <div className="mt-2 grid grid-cols-10 col-span-10">
-                            {getNumberButton(
-                              data.attendanceData.expectedAttendance,
-                            )}
+                            {getNumberButton(data.seatCount)}
                           </div>
                         </div>
                       </div>
