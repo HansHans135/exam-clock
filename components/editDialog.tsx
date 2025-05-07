@@ -296,7 +296,7 @@ const EditDialog: FC<EditDialogProps> = ({
                             placeholder="請輸入科目..."
                           />
                           <input
-                            type="text"
+                            type="time"
                             value={data.startTimes[index]}
                             onChange={(e: ChangeEvent<HTMLInputElement>) => {
                               handleStartTimeChange(index, e.target.value);
@@ -309,7 +309,7 @@ const EditDialog: FC<EditDialogProps> = ({
                             placeholder="請輸入開始時間... (24小時制)"
                           />
                           <input
-                            type="text"
+                            type="time"
                             value={data.endTimes[index]}
                             onChange={(e: ChangeEvent<HTMLInputElement>) => {
                               handleEndTimeChange(index, e.target.value);

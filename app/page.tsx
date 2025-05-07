@@ -89,7 +89,15 @@ const Home: FC = () => {
   };
 
   function getSchedule() {
-    return examSchedule.map((exam) => (
+    const sortedExams = [...examSchedule].sort((a, b) => {
+      const timeToMinutes = (time: string) => {
+        const [hours, minutes] = time.split(':').map(num => parseInt(num, 10));
+        return hours * 60 + minutes;
+      };
+      return timeToMinutes(a.startTime) - timeToMinutes(b.startTime);
+    });
+
+    return sortedExams.map((exam) => (
       <li
         className={`my-1 flex text-6xl align-middle ${
           isTimePassed(exam.endTime) == "Just Passed"
@@ -268,11 +276,18 @@ const Home: FC = () => {
         >
           &nbsp;@kevin0216
         </a>
+        &{" "}
+        <a
+          href="https://github.com/hanshans135"
+          className="text-blue-400 hover:text-blue-500"
+        >
+          &nbsp;@hanshans135
+        </a>
         {screenfull.isFullscreen ? (
           <a className="ml-2 px-1 rounded bg-orange-500 dark:bg-orange-600 text-white">
             <FontAwesomeIcon icon={faExpand} className={"sm:mr-1"} />
             <p className="max-sm:hidden">
-              目前正在全螢幕模式下，按 F11, Esc 或右方按鈕來離開
+              按 F11, Esc 或右方按鈕來離開全螢幕
             </p>
           </a>
         ) : (
